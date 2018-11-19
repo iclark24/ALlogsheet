@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_19_212453) do
+ActiveRecord::Schema.define(version: 2018_11_19_223159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "adventures", force: :cascade do |t|
+    t.string "name"
+    t.string "notes"
+    t.bigint "logsheet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["logsheet_id"], name: "index_adventures_on_logsheet_id"
+  end
+
+  create_table "charclasses", force: :cascade do |t|
+    t.string "name"
+    t.integer "lvls"
+    t.bigint "logsheet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["logsheet_id"], name: "index_charclasses_on_logsheet_id"
+  end
 
   create_table "logsheets", force: :cascade do |t|
     t.string "char"
@@ -22,11 +40,53 @@ ActiveRecord::Schema.define(version: 2018_11_19_212453) do
     t.integer "renown"
     t.string "race"
     t.string "dci"
-    t.integer "advcp"
+    t.integer "exp"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_logsheets_on_user_id"
+  end
+
+  create_table "magicitems", force: :cascade do |t|
+    t.string "name"
+    t.boolean "consumable"
+    t.integer "tcpvalue"
+    t.bigint "logsheet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["logsheet_id"], name: "index_magicitems_on_logsheet_id"
+  end
+
+  create_table "tierfourtcps", force: :cascade do |t|
+    t.integer "amount"
+    t.bigint "logsheet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["logsheet_id"], name: "index_tierfourtcps_on_logsheet_id"
+  end
+
+  create_table "tieronetcps", force: :cascade do |t|
+    t.integer "amount"
+    t.bigint "logsheet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["logsheet_id"], name: "index_tieronetcps_on_logsheet_id"
+  end
+
+  create_table "tierthreetcps", force: :cascade do |t|
+    t.integer "amount"
+    t.bigint "logsheet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["logsheet_id"], name: "index_tierthreetcps_on_logsheet_id"
+  end
+
+  create_table "tiertwotcps", force: :cascade do |t|
+    t.integer "amount"
+    t.bigint "logsheet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["logsheet_id"], name: "index_tiertwotcps_on_logsheet_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,5 +103,12 @@ ActiveRecord::Schema.define(version: 2018_11_19_212453) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "adventures", "logsheets"
+  add_foreign_key "charclasses", "logsheets"
   add_foreign_key "logsheets", "users"
+  add_foreign_key "magicitems", "logsheets"
+  add_foreign_key "tierfourtcps", "logsheets"
+  add_foreign_key "tieronetcps", "logsheets"
+  add_foreign_key "tierthreetcps", "logsheets"
+  add_foreign_key "tiertwotcps", "logsheets"
 end
