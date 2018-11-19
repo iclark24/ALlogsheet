@@ -1,0 +1,40 @@
+<h1>New Logsheet</h1>
+<%= form_with(model: @logsheet, local: true) do |f| %>
+  <div class="field">
+    Character Name
+    <%= f.text_field :char, required: true, placeholder: "Character Name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gold %>
+    <%= f.number_field :gold, min: 0, required: true, value: 0 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :downtime %>
+    <%= f.number_field :downtime, min: 0, required: true, value: 0 %>
+  </div>
+
+    <div class="field">
+    <%= f.label :renown %>
+    <%= f.number_field :renown, min: 0, required: true, value: 0 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :race %>
+    <%= f.text_field :race, min: 0, required: true, placeholder: "Renown" %>
+  </div>
+
+    <div class="field">
+    <%= f.label :dci %>
+    <%= f.text_field :dci, placeholder: "DCI #" %>
+  </div>
+
+  <div class="field">
+    Advancement Checkpoints
+    <%= f.number_field :advcp, min: 0, required: true, value: 0%>
+  </div>
+
+
+  <%= f.submit %>
+<% end %>

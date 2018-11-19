@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  char: MyString
+  gold: 1.5
+  treasurcp: 1
+  downtime: 1
+  renown: 1
+  race: MyString
+  dci: MyString
+  advcp: 1
+  user: one
+
+two:
+  char: MyString
+  gold: 1.5
+  treasurcp: 1
+  downtime: 1
+  renown: 1
+  race: MyString
+  dci: MyString
+  advcp: 1
+  user: two

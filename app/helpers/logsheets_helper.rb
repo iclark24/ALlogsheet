@@ -1,0 +1,2 @@
+module LogsheetsHelper
+end
