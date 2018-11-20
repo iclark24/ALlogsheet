@@ -3,9 +3,9 @@ class Logsheet < ApplicationRecord
   has_many :adventures
   has_many :charclasses
   has_many :magicitems
-  has_many :tieronetcps
-  has_many :tiertwotcps
-  has_many :tierthreetcps
-  has_many :tierfourtcps
+  has_one :tieronetcp
+  has_one :tiertwotcp
+  has_one :tierthreetcp
+  has_one :tierfourtcp
 
 end

@@ -1,2 +1,38 @@
-<h1>Logsheets#show</h1>
-<p>Find me in app/views/logsheets/show.html.erb</p>
+<%= link_to "Back", logsheets_path %>
+
+
+<h1><%= @logsheet.char %></h1>
+<h4>Gold: <%= @logsheet.gold %></h4>
+<h4>Downtime: <%= @logsheet.downtime %></h4>
+<h4>Renown: <%= @logsheet.renown %></h4>
+<h4>Race: <%= @logsheet.race %></h4>
+<h4>Experience: <%= @logsheet.exp %></h4>
+<h4>DCI #<%= @logsheet.dci %></h4>
+
+<ul>
+      <% @logsheet.charclasses.each do |charclass| %>
+        <li><%= charclass.name %> - <%= charclass.lvls %></li>
+      <% end %>
+
+</ul>
+
+<ul>
+      <% @logsheet.magicitems.each do |magic| %>
+        <li><%= magic.name %> - <%= magic.consumable %> - <%= magic.tcpvalue %></li>
+      <% end %>
+
+</ul>
+
+<%= @logsheet.tieronetcp %>
+<%= @logsheet.tiertwotcp %>
+<%= @logsheet.tierthreetcp %>
+<%= @logsheet.tierfourtcp %>
+
+
+<ul>
+      <% @logsheet.adventures.each do |adventure| %>
+        <li><%= adventure.name %> - <%= adventure.notes %></li>
+      <% end %>
+</ul>
+
+      <%= link_to 'Delete', @logsheet, method: :delete %>

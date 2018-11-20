@@ -6,7 +6,13 @@
 <ul>
   <% @logsheets.each do |logsheet| %>
     <li>
-      <%= logsheet.char %> - <%= logsheet.gold %> Gold
+      <%= link_to logsheet.char, logsheet %> - <%= logsheet.exp %> Exp.
+      <br />
+      <ul>
+      <% logsheet.charclasses.each do |charclass| %>
+        <li><%= charclass.name %> - <%= charclass.lvls %></li>
+      </ul>
+      <% end %>
     </li>
   <% end %>
 </ul>

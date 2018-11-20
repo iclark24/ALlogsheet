@@ -1,5 +1,5 @@
 class LogsheetsController < ApplicationController
-  before_action :set_logsheet, only: [:show, :edit, :update]
+  before_action :set_logsheet, only: [:show, :edit, :update, :destroy]
 
   def index
     @logsheets = current_user.logsheets
@@ -10,10 +10,16 @@ class LogsheetsController < ApplicationController
 
   def new
     @logsheet = Logsheet.new
+    @charclass = Charclass.new
   end
 
   def create
     @logsheet = current_user.logsheets.new(logsheet_params)
+    @charclass = @logsheet.charclasses.new(charclass_params)
+    if @charclass.save
+      flash[:success] = "Class Added"
+    end
+
     if @logsheet.save
       flash[:success] = "Logsheet Created"
       redirect_to logsheets_path
@@ -41,7 +47,11 @@ class LogsheetsController < ApplicationController
 
   private
     def logsheet_params
-      params.require(:logsheet).permit(:char, :gold, :downtime, :renown, :race, :dci, :advcp)
+      params.require(:logsheet).permit(:char, :gold, :downtime, :renown, :race, :dci, :exp)
+    end
+
+    def charclass_params
+      params.require(:logsheet).permit(:name, :lvls)
     end
 
     # don't just find by the logsheet model or you may potentially be able to view other users logsheets
