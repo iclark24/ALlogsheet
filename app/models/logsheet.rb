@@ -1,11 +1,11 @@
 class Logsheet < ApplicationRecord
   belongs_to :user
-  has_many :adventures
-  has_many :charclasses
-  has_many :magicitems
-  has_one :tieronetcp
-  has_one :tiertwotcp
-  has_one :tierthreetcp
-  has_one :tierfourtcp
+  has_many :adventures, dependent: :destroy
+  has_many :charclasses, dependent: :destroy
+  has_many :magicitems, dependent: :destroy
+  has_one :tieronetcp, dependent: :destroy
+  has_one :tiertwotcp, dependent: :destroy
+  has_one :tierthreetcp, dependent: :destroy
+  has_one :tierfourtcp, dependent: :destroy
 
 end
