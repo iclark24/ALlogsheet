@@ -1,50 +1,65 @@
 <h1>New Logsheet</h1>
 <%= form_with(model: @logsheet, local: true, class: "ui form") do |f| %>
-  <div class="field">
-    <%= f.label "Character Name" %>
-    <%= f.text_field :char, required: true, placeholder: "Character Name" %>
+
+  <div class="two fields">
+
+    <div class="four wide field">
+      <%= f.label "Character Name" %>
+      <%= f.text_field :char, required: true, placeholder: "Character Name", class:"ui input"%>
+    </div>
+
+    <div class="four wide field">
+      <%= f.label :dci %>
+      <%= f.text_field :dci, placeholder: "DCI #" %>
+    </div>
+    
+  </div>
+  <div class="three fields">
+
+    <div class="three wide field">
+      <%= f.label :race %>
+      <%= f.text_field :race, required: true, placeholder: "Race" %>
+    </div>
+
+    <div class="three wide field">
+      <%= f.label "Class" %>
+      <%= f.text_field :name, required: true, placeholder: "Class" %>
+    </div>
+    <div class="one wide field">
+      <%= f.label "Level" %>
+      <%= f.text_field :lvls, min: 1, required: true, value: 1, readonly: true %>
+    </div>
+
+  </div>
+  <div class="four fields">
+
+    <div class="two wide field">
+      <div class="ui labeled input">
+        <%= f.label "XP", class:"ui label" %>
+        <%= f.number_field :exp, min: 0, required: true, value: 0, readonly: true%>
+      </div>
+    </div>
+    <div class="two wide field">
+      <div class="ui labeled input">
+        <%= f.label "G", class:"ui label" %>
+        <%= f.number_field :gold, min: 0, required: true, placeholder: 0 %>
+      </div>
+    </div>
+    <div class="two wide field">
+      <div class="ui labeled input">
+        <%= f.label "DT", class:"ui label" %>
+        <%= f.number_field :downtime, min: 0, required: true, value: 0, readonly: true %>
+      </div>
+    </div>
+
+    <div class="two wide field">
+      <div class="ui labeled input">
+        <%= f.label "RN", class:"ui label" %>
+        <%= f.number_field :renown, min: 0, required: true, value: 0, readonly: true %>
+      </div>
+    </div>
+
   </div>
 
-  <div class="field">
-    <%= f.label "Experience Points" %>
-    <%= f.number_field :exp, min: 0, required: true, value: 0%>
-  </div>
-
-  <div class="field">
-    <%= f.label :race %>
-    <%= f.text_field :race, min: 0, required: true, placeholder: "Race" %>
-  </div>
-
-  <div class="field">
-    <%= f.label "Class" %>
-    <%= f.text_field :name, required: true, placeholder: "Class" %>
-  </div>
-  <div class="field">
-    <%= f.label "Level" %>
-    <%= f.text_field :lvls, min: 1, required: true, placeholder: 1 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :gold %>
-    <%= f.number_field :gold, min: 0, required: true, value: 0 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :downtime %>
-    <%= f.number_field :downtime, min: 0, required: true, value: 0 %>
-  </div>
-
-    <div class="field">
-    <%= f.label :renown %>
-    <%= f.number_field :renown, min: 0, required: true, value: 0 %>
-  </div>
-
-
-    <div class="field">
-    <%= f.label :dci %>
-    <%= f.text_field :dci, placeholder: "DCI #" %>
-  </div>
-
-
-  <%= f.submit class: "ui button green"%>
+  <%= f.submit class: "ui button green inverted"%>
 <% end %>

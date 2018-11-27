@@ -1,20 +1,47 @@
-<%= link_to "Back", logsheets_path %>
-
-
-<h1><%= @logsheet.char %></h1>
-<h4>Gold: <%= @logsheet.gold %></h4>
-<h4>Downtime: <%= @logsheet.downtime %></h4>
-<h4>Renown: <%= @logsheet.renown %></h4>
-<h4>Race: <%= @logsheet.race %></h4>
-<h4>Experience: <%= @logsheet.exp %></h4>
-<h4>DCI #<%= @logsheet.dci %></h4>
-
-<ul>
-      <% @logsheet.charclasses.each do |charclass| %>
-        <li><%= charclass.name %> - <%= charclass.lvls %></li>
-      <% end %>
-
-</ul>
+<div class="ui raised segments">
+  <div class="ui red center aligned segment">
+      <h1><%= @logsheet.char %></h1>
+      <p>DCI #<%= @logsheet.dci %></p>
+  </div>
+  <div class="ui equal width center aligned padded grid">
+      <div class="row">
+            <div class="column">
+                  <div class="ui segment">
+                        <p><%= @logsheet.race %></p>
+                  </div>
+            </div>
+            <div class="column">
+                  <div class="ui segment">
+                        <% @logsheet.charclasses.each do |charclass| %>
+                             <%= charclass.name %> - <%= charclass.lvls %>
+                        <% end %>  
+                  </div> 
+            </div>
+            <div class="column">
+                  <div class="ui segment">
+                        <%= @logsheet.exp %> EXP
+                  </div>
+            </div>
+      </div>
+      <div class="row">
+            <div class="column">
+                  <div class="ui segment">
+                       <%= @logsheet.gold %> Gold
+                  </div>
+            </div>
+            <div class="column">
+                  <div class="ui segment">
+                        <%= @logsheet.downtime %> Downtime
+                  </div>
+            </div>
+            <div class="column">
+                  <div class="ui segment">
+                        <%= @logsheet.renown %> Renown
+                  </div>
+            </div>
+      </div>
+  </div>
+</div>
 
 <ul>
       <% @logsheet.magicitems.each do |magic| %>
@@ -34,5 +61,6 @@
         <li><%= adventure.name %> - <%= adventure.notes %></li>
       <% end %>
 </ul>
+
 
       <%= link_to 'Delete', @logsheet, method: :delete %>

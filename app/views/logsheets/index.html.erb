@@ -1,18 +1,32 @@
-<%= button_to "Log Out", destroy_user_session_path, method: :delete %>
+
 <h2>Welcome <%= current_user.first_name %></h2>
 <hr />
-<%= link_to "New Logsheet", new_logsheet_path %>
+<%= link_to "New Logsheet", new_logsheet_path, class:"ui button green inverted" %>
 <h3>Your Logsheets</h3>
-<ul>
+<div class="ui divided items">
   <% @logsheets.each do |logsheet| %>
-    <li>
-      <%= link_to logsheet.char, logsheet %> - <%= logsheet.exp %> Exp.
-      <br />
-      <ul>
-      <% logsheet.charclasses.each do |charclass| %>
-        <li><%= charclass.name %> - <%= charclass.lvls %></li>
-      </ul>
-      <% end %>
-    </li>
+  <div class="item">
+    <div class="image">
+      <img src="">
+    </div>
+    <div class="content">
+      <%= link_to logsheet.char, logsheet, class: "header" %>
+      <div class="meta">
+        <span>DCI#<%= logsheet.dci %></span>
+      </div>
+      <div class="description">
+      <p><i class="child icon"></i><%= logsheet.race %></p>
+      <% logsheet.charclasses.each do |charclass|%>
+        <p><i class="shield alternate icon"></i><%= charclass.name %> - <%= charclass.lvls %></p>
+        <% end %>
+      </div>
+      <div class="extra">
+        <%= logsheet.gold %> GP - <%= logsheet.exp %> Exp - <%= logsheet.downtime %> <i class="bed icon"></i>
+      </div>
+    </div>
+  </div>
   <% end %>
-</ul>
+</div>
+
+
+
